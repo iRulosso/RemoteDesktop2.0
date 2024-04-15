@@ -1,0 +1,26 @@
+input {
+    border-radius: 5px;
+    width: 6rem;
+    height: 1.2rem;
+}
+
+button {
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    width: 5rem;
+    height: 1.3rem;
+    margin-top: 1rem;
+}
+
+.divLogin {
+    display: "flex";
+    margin-Top: 50px
+}
+
+.divLoginParent {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
