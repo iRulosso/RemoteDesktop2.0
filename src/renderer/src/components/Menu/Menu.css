@@ -1,0 +1,11 @@
+.imgLogo
+{
+    width: 10rem;
+    height: 10rem;
+    margin: 1rem;
+}
+
+.divLogos
+{
+    display: flex;
+}

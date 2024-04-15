@@ -1,5 +1,7 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
+import {readline } from 'readline';
+import { spawn } from 'child_process';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
@@ -16,6 +18,8 @@ function createWindow() {
       sandbox: false
     }
   })
+
+  mainWindow.setAlwaysOnTop("true");
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -50,7 +54,49 @@ app.whenReady().then(() => {
   })
 
   // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  ipcMain.on('ping', (event) => {console.log('pong');event.reply('ping-r');})
+
+
+  //Login forti//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ipcMain.on('forti-login', (event, argumentos) => {
+    const openfortivpnProcess = spawn('sudo', ['openfortivpn', '359.allaria.online', `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
+      tdio: ['ignore', 'pipe', 'pipe'] // Redirige stdout y stderr para capturarlos
+    });
+    let outputData = ''; // Almacena la salida capturada
+
+    // Captura y procesa la salida de stdout
+    openfortivpnProcess.stdout.on('data', (data) => {
+      outputData += data.toString();
+    });
+
+    // Captura y procesa la salida de stderr
+    openfortivpnProcess.stderr.on('data', (data) => {
+      outputData += data.toString();
+      if(outputData.includes("Authenticated."))
+      {
+        event.returnValue = true;
+        console.log("Logueado con exito!!");
+      }
+    });
+
+    // Maneja el cierre del proceso
+    openfortivpnProcess.on('close', (code) => {
+      // Analiza la salida capturada para buscar mensajes relevantes
+      if (outputData.includes('ERROR:')) {
+        event.returnValue = false;
+        console.error('Error al conddddectar:', outputData);
+      } else {
+        console.log('Conexión establecida correctamente.');
+      }
+    });
+
+    // Manejar errores
+    openfortivpnProcess.on('error', (error) => {
+      console.error('Error al ejecutar openfortivpn:', error);
+    });
+  });
+
+
 
   createWindow()
 

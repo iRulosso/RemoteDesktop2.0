@@ -1,0 +1,52 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: rgb(103, 5, 112);
+    padding: 0px;
+    padding-top: 20px;
+    border-radius: 5px;
+  }
+
+  .h1Ventana
+  {
+    color: black;
+    margin: 0;
+  }
+
+  .pVentana
+  {
+    margin: 0;
+    margin-top: 0.5rem;
+    color: black;
+  }
+  .modal-content
+  {
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 0px 0px 5px 5px;
+  }
+
+  .btnVentana
+  {
+    margin: 0;
+    color: white;
+    background-color: rgb(100, 5, 100);
+  }
+
+  .errorVentanaIcon
+  {
+    height: 2.5rem;
+    margin: 0;
+    margin-right: 0.3rem;
+  }
