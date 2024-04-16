@@ -1,6 +1,6 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
-import {readline } from 'readline';
+import { exec } from 'child_process';
 import { spawn } from 'child_process';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -54,7 +54,23 @@ app.whenReady().then(() => {
   })
 
   // IPC test
-  ipcMain.on('ping', (event) => {console.log('pong');event.reply('ping-r');})
+  ipcMain.on('ping', (event) => { console.log('pong'); event.reply('ping-r'); })
+
+  ipcMain.on('login-remoto', (event, argumentos) => {
+    // Define el comando que deseas ejecutar
+    const comando = `xfreerdp /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+
+
+    console.log("Logueando....");
+    // Ejecuta el comando
+    exec(comando, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error al ejecutar el comando: ${error}`);
+        return;
+      }
+      console.log(`Resultado del comando: ${stdout}`);
+    });
+  });
 
 
   //Login forti//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,8 +88,7 @@ app.whenReady().then(() => {
     // Captura y procesa la salida de stderr
     openfortivpnProcess.stderr.on('data', (data) => {
       outputData += data.toString();
-      if(outputData.includes("Authenticated."))
-      {
+      if (outputData.includes("Authenticated.")) {
         event.returnValue = true;
         console.log("Logueado con exito!!");
       }

@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import './Login.css';
 import { useState } from 'react';
+import userIcon from '../../assets/user.png';
+import passIcon from '../../assets/pass.png';
 
 const Login = ({ login }) => {
 
@@ -15,12 +17,13 @@ const Login = ({ login }) => {
         otp
     }
 
-
     const handleUser = (e) => setUser(e.target.value);
     const handlePass = (e) => setPass(e.target.value);
     const handleOtp = (e) => setOtp(e.target.value);
 
     return (
+        <div className='divLoginVpn'>
+            {/*
         <div className='divLoginParent'>
             <h1>Remote Desktop 2.0</h1>
             <div className='divLogin'>
@@ -37,8 +40,26 @@ const Login = ({ login }) => {
                     <input onChange={handleOtp} type="number" />
                 </div>
             </div>
-            <button onClick={() => login(argumentos)} >Login</button>
-        </div >
+        <button onClick={() => login(argumentos)} >Login</button>]
+        </div >*/}
+        <h1 className='h1LoginVpn'>VPN Login</h1>
+        <div className='formLoginVpn'>
+            <div className='divCampoLoginVpn'>
+                <img src={userIcon} className='imgLoginVpn' />
+                <input  placeholder={"Usuario"} className='inputLoginVpn' type="text" />
+            </div>
+            <div className='divCampoLoginVpn'>
+                <img src={userIcon} className='imgLoginVpn' />
+                <input  placeholder={"Contraseña"} className='inputLoginVpn' type="password" />
+            </div>
+            <div className='divCampoLoginVpn'>
+                <img src={passIcon} className='imgLoginVpn' />
+                <input  placeholder={"Token (si tiene)"} className='inputLoginVpn' type="text" />
+            </div>
+            <button className='btnLoginVpn'>Login</button>
+            <p className='pLoginVpn'>¿Olvidaste la contraseña?</p>
+        </div>
+    </div>
     )
 }
 
