@@ -23,40 +23,21 @@ const Login = ({ login }) => {
 
     return (
         <div className='divLoginVpn'>
-            {/*
-        <div className='divLoginParent'>
-            <h1>Remote Desktop 2.0</h1>
-            <div className='divLogin'>
-                <div style={{ display: "flex" }}>
-                    <label htmlFor="">User:</label>
-                    <input style={{marginLeft:10}} onChange={handleUser} type="text" />
-                </div>
-                <div style={{ display: "flex" }}>
-                    <label htmlFor="">Pass:</label>
-                    <input style={{marginLeft:11}}  onChange={handlePass} type="password" />
-                </div>
-                <div style={{ display: "flex" }}>
-                    <label htmlFor="">Token:</label>
-                    <input onChange={handleOtp} type="number" />
-                </div>
-            </div>
-        <button onClick={() => login(argumentos)} >Login</button>]
-        </div >*/}
         <h1 className='h1LoginVpn'>VPN Login</h1>
         <div className='formLoginVpn'>
             <div className='divCampoLoginVpn'>
                 <img src={userIcon} className='imgLoginVpn' />
-                <input  placeholder={"Usuario"} className='inputLoginVpn' type="text" />
+                <input  placeholder={"Usuario"} onChange={handleUser} className='inputLoginVpn' type="text" />
             </div>
             <div className='divCampoLoginVpn'>
                 <img src={userIcon} className='imgLoginVpn' />
-                <input  placeholder={"Contraseña"} className='inputLoginVpn' type="password" />
+                <input  placeholder={"Contraseña"} onChange={handlePass} className='inputLoginVpn' type="password" />
             </div>
             <div className='divCampoLoginVpn'>
                 <img src={passIcon} className='imgLoginVpn' />
-                <input  placeholder={"Token (si tiene)"} className='inputLoginVpn' type="text" />
+                <input  placeholder={"Token (si tiene)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
             </div>
-            <button className='btnLoginVpn'>Login</button>
+            <button className='btnLoginVpn' onClick={() => login(argumentos)} >Login</button>
             <p className='pLoginVpn'>¿Olvidaste la contraseña?</p>
         </div>
     </div>
