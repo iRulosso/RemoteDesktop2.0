@@ -23,24 +23,24 @@ const Login = ({ login }) => {
 
     return (
         <div className='divLoginVpn'>
-        <h1 className='h1LoginVpn'>VPN Login</h1>
-        <div className='formLoginVpn'>
-            <div className='divCampoLoginVpn'>
-                <img src={userIcon} className='imgLoginVpn' />
-                <input  placeholder={"Usuario"} onChange={handleUser} className='inputLoginVpn' type="text" />
+            <h1 className='h1LoginVpn'>VPN Login</h1>
+            <div className='formLoginVpn'>
+                <div className='divCampoLoginVpn'>
+                    <img src={userIcon} className='imgLoginVpn' />
+                    <input placeholder={"Usuario"} onChange={handleUser} className='inputLoginVpn' type="text" />
+                </div>
+                <div className='divCampoLoginVpn'>
+                    <img src={userIcon} className='imgLoginVpn' />
+                    <input placeholder={"Contraseña"} onChange={handlePass} className='inputLoginVpn' type="password" />
+                </div>
+                <div className='divCampoLoginVpn'>
+                    <img src={passIcon} className='imgLoginVpn' />
+                    <input placeholder={"Token (si tiene)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
+                </div>
+                <button className='btnLoginVpn' onClick={() => login(argumentos)} >Login</button>
+                <p className='pLoginVpn'>¿Olvidaste la contraseña?</p>
             </div>
-            <div className='divCampoLoginVpn'>
-                <img src={userIcon} className='imgLoginVpn' />
-                <input  placeholder={"Contraseña"} onChange={handlePass} className='inputLoginVpn' type="password" />
-            </div>
-            <div className='divCampoLoginVpn'>
-                <img src={passIcon} className='imgLoginVpn' />
-                <input  placeholder={"Token (si tiene)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
-            </div>
-            <button className='btnLoginVpn' onClick={() => login(argumentos)} >Login</button>
-            <p className='pLoginVpn'>¿Olvidaste la contraseña?</p>
         </div>
-    </div>
     )
 }
 

@@ -1,20 +1,23 @@
 import React from 'react'
 import './VentanaCargando.css'
-import { BoxesLoader } from "react-awesome-loaders"
+import { Blocks } from 'react-loader-spinner'
 
-const VetanaCargando = () => {
+const VetanaCargando = ({data}) => {
     return (
         <div className="modal-overlay-cargando">
             <div className="modal-cargando">
+                <h1 className='h1Cargando'>Escritorio Remoto</h1>
                 <div className="modal-content-cargando">
-                    <h1>Conexion remota...</h1>
-                    <BoxesLoader
-                        boxColor={"#6366F1"}
-                        style={{ marginBottom: "20px" }}
-                        desktopSize={"128px"}
-                        mobileSize={"80px"}
+                    <Blocks
+                        height="120"
+                        width="120"
+                        color="#4fa94d"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        visible={true}
                     />
-                    <button>Cancelar</button>
+                    <button className='btnCargando' onClick={data.cerrar}>Cancelar</button>
                 </div>
             </div>
         </div>

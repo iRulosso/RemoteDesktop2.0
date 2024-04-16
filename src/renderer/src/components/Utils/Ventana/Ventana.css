@@ -11,7 +11,7 @@
   }
   
   .modal {
-    background-color: rgb(103, 5, 112);
+    background-color: rgb(216, 144, 35);
     padding: 0px;
     padding-top: 20px;
     border-radius: 5px;
@@ -41,7 +41,10 @@
   {
     margin: 0;
     color: white;
-    background-color: rgb(100, 5, 100);
+    background-color: rgb(216, 144, 35);
+    border: none;
+    border-radius: 5px;
+    width: 5rem;
   }
 
   .errorVentanaIcon
