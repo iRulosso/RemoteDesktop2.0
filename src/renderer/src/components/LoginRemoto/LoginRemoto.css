@@ -1,7 +1,87 @@
 .divLoginRemoto {
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: divMenu 1s ease-in-out;
+}
+
+.h1LoginRemoto {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.formLoginRemoto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-bottom: 0;
+    padding-bottom: 0.2rem;
+}
+
+.imgLoginRemoto {
+    background-color: rgb(207, 137, 71);
+    width: 2.3rem;
+    margin: 0rem;
+    border-radius: 4px 0 0 4px;
+}
+
+.divCampoLoginRemoto {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+    margin-bottom: 0rem;
+}
+
+.inputLoginRemoto {
+    width: 15rem;
+    height: 2rem;
+    font-size: 16PX;
+    border-radius: 0 5px 5px 0;
+    border: none;
+}
+.pLoginRemoto
+{
+    color: rgb(28, 79, 173);
+    text-align: left;
+    margin: 0;
+}
+.pLoginRemoto
+{
+    cursor: pointer;
+}
+.divBotonesLoginRemoto
+{
+    margin: 0;
+    border-radius: 0 0 6px 6px;
+}
+.btnLoginRemoto
+{
+    background-color: rgb(207, 137, 71);
+    color: white;
+    height: 2rem;
+    font-size: 22px;
+    margin: 0.1rem;
+    font-weight: bold;
+    width: 18rem;
+    border-radius: 10px;
+    border: none;
+}
+.btnLoginRemoto:hover
+{
+    cursor: pointer;
+    background-color: rgb(129, 77, 29);
+}
+
+/*.divLoginRemoto {
     background-color: rgb(207, 137, 71);
     border-radius: 6px;
     text-align: center;
+    animation: divMenu 1s ease-in-out;
 }
 
 .h1LoginRemoto {
@@ -78,4 +158,4 @@
     margin: 0;
     margin-left: 0.5rem;
     margin-bottom: 1.5rem;
-}
+}*/

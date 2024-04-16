@@ -34,17 +34,23 @@ function App() {
     }
   }
 
+  window.electron.ipcRenderer.once('remoto-response', (event, arg) => {
+    console.log("error remootoo"); // Respuesta del proceso principal
+  });
+
   const handleFormRemoto = () => setFormRemoto(!formRemoto);
 
   return (
-    <>
-      {logged ? (
-        formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto }} /> : <Menu data={{ elegir: handleFormRemoto }} />
-      ) : <Login login={HandleLogin} />}
+    <div>
+      <div className="contenidoDiv">
+        {logged ? (
+          formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto }} /> : <Menu data={{ elegir: handleFormRemoto }} />
+        ) : <Login login={HandleLogin} />}
 
-      {error ? <Ventana data={objError} /> : null}
-      <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
-    </>
+        {error ? <Ventana data={objError} /> : null}
+        <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
+      </div>
+    </div>
   )
 }
 

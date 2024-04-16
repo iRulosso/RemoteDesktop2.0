@@ -6,8 +6,9 @@ ul {
 
 body {
   min-height: 100vh;
-  background: './fondo1.jpg';
   line-height: 1.6;
+  background: './fondo1.jpg';
+
   font-family:
     Inter,
     -apple-system,

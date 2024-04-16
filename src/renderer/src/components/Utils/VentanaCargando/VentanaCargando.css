@@ -1,0 +1,25 @@
+.modal-overlay-cargando{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.13); /* fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-cargando {
+    background-color: rgb(189, 126, 33);
+    padding: 0px;
+    padding-top: 20px;
+    border-radius: 5px;
+  }
+  .modal-content-cargando
+  {
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 0px 0px 5px 5px;
+  }

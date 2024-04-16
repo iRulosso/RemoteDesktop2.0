@@ -1,6 +1,7 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { exec } from 'child_process';
+import { ps } from 'ps-node';
 import { spawn } from 'child_process';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -56,22 +57,36 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', (event) => { console.log('pong'); event.reply('ping-r'); })
 
-  ipcMain.on('login-remoto', (event, argumentos) => {
-    // Define el comando que deseas ejecutar
+
+
+  //Login remoto
+  ipcMain.handle('login-remoto', async (event, argumentos) => {
     const comando = `xfreerdp /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
-
-
     console.log("Logueando....");
-    // Ejecuta el comando
-    exec(comando, (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error al ejecutar el comando: ${error}`);
-        return;
-      }
-      console.log(`Resultado del comando: ${stdout}`);
-    });
+    try {
+      const resultado = await ejecutarComandoAsync(comando);
+      // Aquí puedes continuar con el resultado obtenido
+      console.log("Operación completada:", resultado);
+      return true;
+    } catch (error) {
+      console.error("Error en el proceso de login:", error);
+      return false;
+    }
   });
 
+  const ejecutarComandoAsync = async (comando) => {
+    return new Promise((resolve, reject) => {
+      exec(comando, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error al ejecutar el comando: ${error}`);
+          reject(error);
+          return;
+        }
+        console.log(`Resultado del comando: ${stdout}`);
+        resolve(stdout);
+      });
+    });
+  }
 
   //Login forti//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ipcMain.on('forti-login', (event, argumentos) => {

@@ -1,6 +1,7 @@
 .divLoginVpn {
     border-radius: 6px;
     text-align: center;
+    animation: animacion 1s ease-in-out;
 }
 
 .h1LoginVpn {
@@ -68,3 +69,12 @@
     background-color:rgb(165, 94, 27);
     cursor: pointer;
 }
+
+@keyframes animacion {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
