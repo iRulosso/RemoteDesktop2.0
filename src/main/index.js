@@ -9,9 +9,10 @@ import icon from '../../resources/icon.png?asset'
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1920,
+    height: 1080,
     show: false,
+    fullscreen: true,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -19,8 +20,6 @@ function createWindow() {
       sandbox: false
     }
   })
-
-  mainWindow.setAlwaysOnTop("true");
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -61,7 +60,27 @@ app.whenReady().then(() => {
 
   //Login remoto
   ipcMain.handle('login-remoto', async (event, argumentos) => {
-    const comando = `xfreerdp /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+
+    let comando = '';
+    if (argumentos.equipo.includes(".")) {
+      comando = `xfreerdp /multimon /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+    } else {
+      switch (argumentos.empresa) {
+        case "allaria":
+          comando = `xfreerdp /multimon /v:${argumentos.equipo}.allaria.local /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+          break;
+        case "alfa":
+          comando = `xfreerdp /multimon /v:${argumentos.equipo}.alfa.local /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+          break;
+        case "alfy":
+          comando = `xfreerdp /multimon /v:${argumentos.equipo}.smvsa.local /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+          break;
+        case "arpy":
+          comando = `xfreerdp /multimon /v:${argumentos.equipo}.allaria.local /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+          break;
+      }
+    }
+
     console.log("Logueando....");
     try {
       const resultado = await ejecutarComandoAsync(comando);
@@ -87,6 +106,45 @@ app.whenReady().then(() => {
       });
     });
   }
+
+  /////////////////teset remoto
+
+  ipcMain.on('remoto-login2', (event, argumentos) => {
+    const freerdp = spawn('sudo', ['openfortivpn', '359.allaria.online', `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
+      tdio: ['ignore', 'pipe', 'pipe'] // Redirige stdout y stderr para capturarlos
+    });
+    let outputData = ''; // Almacena la salida capturada
+
+    // Captura y procesa la salida de stdout
+    freerdp.stdout.on('data', (data) => {
+      outputData += data.toString();
+    });
+
+    // Captura y procesa la salida de stderr
+    freerdp.stderr.on('data', (data) => {
+      outputData += data.toString();
+      if (outputData.includes("Authenticated.")) {
+        event.returnValue = true;
+        console.log("Logueado con exito!!");
+      }
+    });
+
+    // Maneja el cierre del proceso
+    freerdp.on('close', (code) => {
+      // Analiza la salida capturada para buscar mensajes relevantes
+      if (outputData.includes('ERROR:')) {
+        event.returnValue = false;
+        console.error('Error al conddddectar:', outputData);
+      } else {
+        console.log('Conexión establecida correctamente.');
+      }
+    });
+
+    // Manejar errores
+    freerdp.on('error', (error) => {
+      console.error('Error al ejecutar openfortivpn:', error);
+    });
+  });
 
   //Login forti//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ipcMain.on('forti-login', (event, argumentos) => {

@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import './LoginRemoto.css'
 import userIcon from '../../assets/user.png';
 import passIcon from '../../assets/pass.png';
+import equipoIcon from '../../assets/equipo.png';
 import VetanaCargando from '../Utils/VentanaCargando/VetanaCargando';
 import Ventana from '../Utils/Ventana/Ventana';
+import allariaicon from '../../assets/allariaTitulo.png'
+import alfaIcon from '../../assets/alfaTitulo.png'
+import arpyIcon from '../../assets/arpyTitulo.png'
+import alfyIcon from '../../assets/alfyTitulo.png'
 
 const LoginRemoto = ({ data }) => {
 
@@ -28,7 +33,8 @@ const LoginRemoto = ({ data }) => {
     {
         user,
         pass,
-        equipo
+        equipo,
+        empresa: data.empresa
     }
     let objError =
     {
@@ -53,22 +59,26 @@ const LoginRemoto = ({ data }) => {
     return (
         <div className='divLoginRemoto'>
             <h1 className='h1LoginRemoto'>Escritorio Remoto</h1>
+            {data.empresa === "allaria" ? <img className='imgTitulo' src={allariaicon} alt="" />:null}
+            {data.empresa === "alfa" ? <img className='imgTitulo' src={alfaIcon} alt="" />:null}
+            {data.empresa === "arpy" ? <img className='imgTitulo' src={arpyIcon} alt="" />:null}
+            {data.empresa === "alfy" ? <img className='imgTitulo' src={alfyIcon} alt="" />:null}
             <div className='formLoginRemoto'>
                 <div className='divCampoLoginRemoto'>
-                    <img src={userIcon} className='imgLoginRemoto' />
+                    <img src={equipoIcon} className={'imgLoginRemoto' + data.empresa} />
                     <input onChange={handleEquipo} placeholder={"EQUIPO"} className='inputLoginRemoto' type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
-                    <img src={userIcon} className='imgLoginRemoto' />
+                    <img src={userIcon} className={'imgLoginRemoto' + data.empresa} />
                     <input onChange={handleUser} placeholder={"USUARIO"} className='inputLoginRemoto' type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
-                    <img src={passIcon} className='imgLoginRemoto' />
+                    <img src={passIcon} className={'imgLoginRemoto' + data.empresa} />
                     <input onChange={handlePass} placeholder={"CONTRASEÑA"} className='inputLoginRemoto' type="password" />
                 </div>
             </div>
-            <button className='btnLoginRemoto' onClick={HandleLogin}>Login</button>
-            <button className='btnLoginRemoto' onClick={data.volver}>Volver</button>
+            <button className={'btnLoginRemoto' + data.empresa}  onClick={HandleLogin}>Login</button>
+            <button className={'btnLoginRemoto' + data.empresa}  onClick={data.volver}>Volver</button>
             <p className='pLoginRemoto'>¿Olvidaste la contraseña?</p>
 
             {carga ? <VetanaCargando data={{ cerrar: handleCarga }} /> : null}

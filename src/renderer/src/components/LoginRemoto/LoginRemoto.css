@@ -2,15 +2,21 @@
     border-radius: 6px;
     text-align: center;
     display: flex;
+    margin: 0;
     flex-direction: column;
     align-items: center;
     animation: divMenu 1s ease-in-out;
 }
-
+.imgTitulo
+{
+    width: 10rem;
+    margin: 2rem;
+    margin-bottom: 0.5rem;
+}
 .h1LoginRemoto {
     color: rgb(255, 255, 255);
     font-weight: bold;
-    margin: 1rem;
+    margin: 0rem;
 }
 
 .formLoginRemoto {
@@ -18,18 +24,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
     margin-bottom: 0;
     padding-bottom: 0.2rem;
 }
-
-.imgLoginRemoto {
-    background-color: rgb(207, 137, 71);
-    width: 2.3rem;
-    margin: 0rem;
-    border-radius: 4px 0 0 4px;
-}
-
 .divCampoLoginRemoto {
     display: flex;
     align-items: center;
@@ -46,7 +43,7 @@
 }
 .pLoginRemoto
 {
-    color: rgb(28, 79, 173);
+    color: rgb(255, 255, 255);
     text-align: left;
     margin: 0;
 }
@@ -59,9 +56,17 @@
     margin: 0;
     border-radius: 0 0 6px 6px;
 }
-.btnLoginRemoto
+
+/*            allaria           */
+.imgLoginRemotoallaria {
+    background-color: rgb(15, 80, 141);
+    width: 2.3rem;
+    margin: 0rem;
+    border-radius: 4px 0 0 4px;
+}
+.btnLoginRemotoallaria 
 {
-    background-color: rgb(207, 137, 71);
+    background-color: rgb(15, 80, 141);
     color: white;
     height: 2rem;
     font-size: 22px;
@@ -71,91 +76,81 @@
     border-radius: 10px;
     border: none;
 }
-.btnLoginRemoto:hover
+.btnLoginRemotoallaria:hover
 {
     cursor: pointer;
-    background-color: rgb(129, 77, 29);
+    background-color: rgb(6, 36, 65);
 }
 
-/*.divLoginRemoto {
-    background-color: rgb(207, 137, 71);
-    border-radius: 6px;
-    text-align: center;
-    animation: divMenu 1s ease-in-out;
-}
-
-.h1LoginRemoto {
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    margin: 1rem;
-}
-
-.formLoginRemoto {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    margin-bottom: 0;
-    padding-bottom: 0.2rem;
-}
-
-.imgLoginRemoto {
-    background-color: rgb(207, 137, 71);
-    width: 3.3rem;
-    margin: 0rem;
-    border-radius: 4px 0 0 4px;
-}
-
-.divCampoLoginRemoto {
-    display: flex;
-    align-items: center;
-    margin: 1rem;
-    margin-bottom: 0rem;
-}
-
-.inputLoginRemoto {
-    width: 15rem;
-    height: 3rem;
-    font-size: 18PX;
-    border-radius: 0 5px 5px 0;
-    border: 1px solid black;
-}
-.pLoginRemoto
+/*            alfy           */
+.btnLoginRemotoalfy
 {
-    color: rgb(28, 79, 173);
-    text-align: left;
-}
-.pLoginRemoto
-{
-    cursor: pointer;
-}
-.divBotonesLoginRemoto
-{
-    margin: 0;
-    background-color: white;
-    border-radius: 0 0 6px 6px;
-}
-.btnLoginRemoto
-{
-    background-color: rgb(207, 137, 71);
+    background-color: rgb(92, 161, 86);
     color: white;
-    height: 2.5rem;
+    height: 2rem;
     font-size: 22px;
-    margin: 0.5rem;
-    margin-bottom: 2rem;
+    margin: 0.1rem;
     font-weight: bold;
-    width: 8rem;
+    width: 18rem;
     border-radius: 10px;
     border: none;
 }
-.btnLoginRemoto:hover
+.btnLoginRemotoalfy:hover
 {
     cursor: pointer;
-    height: 3rem;
-    width: 8.5rem;
-    margin: 0;
-    margin-left: 0.5rem;
-    margin-bottom: 1.5rem;
-}*/
+    background-color: rgb(37, 126, 29);
+}
+.imgLoginRemotoalfy {
+    background-color: rgb(92, 161, 86);
+    width: 2.2rem;
+    margin: 0rem;
+    border-radius: 4px 0 0 4px;
+}
+/*            arpy         */
+.btnLoginRemotoarpy
+{
+    background-color: rgb(29, 161, 212);
+    color: white;
+    height: 2rem;
+    font-size: 22px;
+    margin: 0.1rem;
+    font-weight: bold;
+    width: 18rem;
+    border-radius: 10px;
+    border: none;
+}
+.btnLoginRemotoarpy:hover
+{
+    cursor: pointer;
+    background-color: rgb(16, 100, 133);
+}
+.imgLoginRemotoarpy {
+    background-color: rgb(29, 161, 212);
+    width: 2.2rem;
+    margin: 0rem;
+    border-radius: 4px 0 0 4px;
+}
+/*            alfa           */
+.imgLoginRemotoalfa {
+    background-color: rgb(15, 80, 141);
+    width: 2.3rem;
+    margin: 0rem;
+    border-radius: 4px 0 0 4px;
+}
+.btnLoginRemotoalfa 
+{
+    background-color: rgb(15, 80, 141);
+    color: white;
+    height: 2rem;
+    font-size: 22px;
+    margin: 0.1rem;
+    font-weight: bold;
+    width: 18rem;
+    border-radius: 10px;
+    border: none;
+}
+.btnLoginRemotoalfa:hover
+{
+    cursor: pointer;
+    background-color: rgb(6, 36, 65);
+}

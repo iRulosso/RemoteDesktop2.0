@@ -4,6 +4,7 @@ import Menu from "./components/Menu/Menu";
 import { useState } from "react";
 import Ventana from "./components/Utils/Ventana/Ventana";
 import LoginRemoto from "./components/LoginRemoto/LoginRemoto";
+import Barra from "./components/Barra/Barra";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
   const [error, setError] = useState(false);
   const [errorMsj, setErrorMsj] = useState("error");
   const [errorTipo, setErrorTipo] = useState(false); //0 = OK, 1 == error
+  const [empresa, setEmpresa] = useState('allaria');
 
   const handleError = () => setError(false);
   const handleDev = () => setLogged(!logged);
@@ -30,23 +32,23 @@ function App() {
     else {
       setError(true);
       setErrorTipo(true);
-      setErrorMsj("Error al conectar a la VPN.");
+      setErrorMsj("Error al conectar la VPN.");
     }
   }
 
-  window.electron.ipcRenderer.once('remoto-response', (event, arg) => {
-    console.log("error remootoo"); // Respuesta del proceso principal
-  });
-
-  const handleFormRemoto = () => setFormRemoto(!formRemoto);
+  const handleFormRemoto = (e) => 
+  {
+    setEmpresa(e)
+    setFormRemoto(!formRemoto);
+  }
 
   return (
     <div>
+      <Barra/>
       <div className="contenidoDiv">
         {logged ? (
-          formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto }} /> : <Menu data={{ elegir: handleFormRemoto }} />
-        ) : <Login login={HandleLogin} />}
-
+          formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa }} /> : <Menu data={{ elegir: handleFormRemoto}} />) 
+          : <Login login={HandleLogin} />}
         {error ? <Ventana data={objError} /> : null}
         <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
       </div>
