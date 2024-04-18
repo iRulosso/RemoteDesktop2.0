@@ -5,6 +5,8 @@ import { useState } from "react";
 import Ventana from "./components/Utils/Ventana/Ventana";
 import LoginRemoto from "./components/LoginRemoto/LoginRemoto";
 import Barra from "./components/Barra/Barra";
+import Loading from "./components/Loading/Loading";
+import './App.css'
 
 function App() {
 
@@ -36,21 +38,22 @@ function App() {
     }
   }
 
-  const handleFormRemoto = (e) => 
-  {
+  const handleFormRemoto = (e) => {
     setEmpresa(e)
     setFormRemoto(!formRemoto);
   }
 
   return (
     <div>
-      <Barra/>
-      <div className="contenidoDiv">
-        {logged ? (
-          formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa }} /> : <Menu data={{ elegir: handleFormRemoto}} />) 
-          : <Login login={HandleLogin} />}
-        {error ? <Ventana data={objError} /> : null}
-        <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
+      <div className="app">
+        <Barra />
+        <div className="contenidoDiv">
+          {logged ? (
+            formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa}} /> : <Menu data={{ elegir: handleFormRemoto }} />)
+            : <Login login={HandleLogin} />}
+          {error ? <Ventana data={objError} /> : null}
+          <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
+        </div>
       </div>
     </div>
   )

@@ -1,12 +1,5 @@
 @import './base.css';
 
-body {
-  overflow: hidden;
-  background-image: url('./fondo2.jpg');
-  background-size: cover;
-  user-select: none;
-}
-
 .contenidoDiv
 {
   display: flex;

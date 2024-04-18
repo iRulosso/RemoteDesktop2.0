@@ -56,6 +56,22 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', (event) => { console.log('pong'); event.reply('ping-r'); })
 
+  ///Abrir app
+  ipcMain.on('abrir-app', (event, command) => {
+    console.log("Abriendo app..");
+    // Ejecutar el comando
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error al intentar abrir Chrome: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`Error en la salida estándar: ${stderr}`);
+        return;
+      }
+      console.log(`Chrome abierto correctamente.`);
+    });
+  });
 
 
   //Login remoto

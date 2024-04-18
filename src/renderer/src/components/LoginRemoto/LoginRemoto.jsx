@@ -9,6 +9,7 @@ import allariaicon from '../../assets/allariaTitulo.png'
 import alfaIcon from '../../assets/alfaTitulo.png'
 import arpyIcon from '../../assets/arpyTitulo.png'
 import alfyIcon from '../../assets/alfyTitulo.png'
+import Loading from '../Loading/Loading';
 
 const LoginRemoto = ({ data }) => {
 
@@ -17,6 +18,9 @@ const LoginRemoto = ({ data }) => {
     const [equipo, setEquipo] = useState("equipo");
 
     const [carga, setCarga] = useState(false);
+
+    const [loading, setLoading] = useState(false);
+    const handleLoading = () => setLoading();
 
     const [error, setError] = useState(false);
     const [errorMsj, setErrorMsj] = useState("Error al iniciar el escritorio remoto.");
@@ -45,10 +49,12 @@ const LoginRemoto = ({ data }) => {
 
     const HandleLogin = async () => {
         try {
-            setCarga(true);
+            //setCarga(true);
+            setLoading(true);
             const result = await window.electron.ipcRenderer.invoke('login-remoto', userObj);
-            setCarga(false);
-            handleError();
+            //setCarga(false);
+            setLoading(false);
+            setError(true);
             console.log(result)
         } catch (error) {
             console.error("Error al enviar el mensaje:", error);
@@ -59,10 +65,10 @@ const LoginRemoto = ({ data }) => {
     return (
         <div className='divLoginRemoto'>
             <h1 className='h1LoginRemoto'>Escritorio Remoto</h1>
-            {data.empresa === "allaria" ? <img className='imgTitulo' src={allariaicon} alt="" />:null}
-            {data.empresa === "alfa" ? <img className='imgTitulo' src={alfaIcon} alt="" />:null}
-            {data.empresa === "arpy" ? <img className='imgTitulo' src={arpyIcon} alt="" />:null}
-            {data.empresa === "alfy" ? <img className='imgTitulo' src={alfyIcon} alt="" />:null}
+            {data.empresa === "allaria" ? <img className='imgTitulo' src={allariaicon} alt="" /> : null}
+            {data.empresa === "alfa" ? <img className='imgTitulo' src={alfaIcon} alt="" /> : null}
+            {data.empresa === "arpy" ? <img className='imgTitulo' src={arpyIcon} alt="" /> : null}
+            {data.empresa === "alfy" ? <img className='imgTitulo' src={alfyIcon} alt="" /> : null}
             <div className='formLoginRemoto'>
                 <div className='divCampoLoginRemoto'>
                     <img src={equipoIcon} className={'imgLoginRemoto' + data.empresa} />
@@ -77,12 +83,13 @@ const LoginRemoto = ({ data }) => {
                     <input onChange={handlePass} placeholder={"CONTRASEÑA"} className='inputLoginRemoto' type="password" />
                 </div>
             </div>
-            <button className={'btnLoginRemoto' + data.empresa}  onClick={HandleLogin}>Login</button>
-            <button className={'btnLoginRemoto' + data.empresa}  onClick={data.volver}>Volver</button>
+            <button className={'btnLoginRemoto' + data.empresa} onClick={HandleLogin}>Login</button>
+            <button className={'btnLoginRemoto' + data.empresa} onClick={data.volver}>Volver</button>
             <p className='pLoginRemoto'>¿Olvidaste la contraseña?</p>
 
             {carga ? <VetanaCargando data={{ cerrar: handleCarga }} /> : null}
             {error ? <Ventana data={objError} /> : null}
+            {loading ? <Loading data={{ cerrar: handleLoading }} /> : null}
         </div>
     )
 }

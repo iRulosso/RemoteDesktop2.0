@@ -2,14 +2,18 @@
 {
     width: 3.5rem;
     margin: 0.5rem;
+    transition: transform 0.3s ease;
 }
 .botonAccion:hover
 {
+    transition: transform 0.3s ease;
     cursor: pointer;
-    width: 4rem;
-    height: 4rem;
-    margin: 0.25rem;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: 0rem;
+    transform: rotate(45deg);
 }
+
 .divBarraIconos
 {
     display: flex;

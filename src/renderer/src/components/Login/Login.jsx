@@ -17,12 +17,18 @@ const Login = ({ login }) => {
     {
         user,
         pass,
-        otp
+        otp,
+        vpn
     }
-    const handleSelectChange = (event) => setSelectedValue(event.target.value);
+    const handleVpn = (event) => setVpn(event.target.value);
     const handleUser = (e) => setUser(e.target.value);
     const handlePass = (e) => setPass(e.target.value);
     const handleOtp = (e) => setOtp(e.target.value);
+
+    const handleOlvidePass = () =>
+    {
+        window.electron.ipcRenderer.send("abrir-app", "google-chrome unlock.allaria.com.ar");
+    }
 
     return (
         <div className='divLoginVpn'>
@@ -30,7 +36,7 @@ const Login = ({ login }) => {
             <div className='formLoginVpn'>
                 <div className='divCampoLoginVpn'>
                     <img src={vpnIcon} className='imgSelectVpn' />
-                    <select className='selectLogin' name="select" onChange={handleSelectChange}>
+                    <select className='selectLogin' name="select" onChange={handleVpn}>
                         <option value="359" selected>Allaria 359</option>
                         <option value="277">Allaria 277</option>
                         <option value="hc">Allaria HC</option>
@@ -49,7 +55,7 @@ const Login = ({ login }) => {
                     <input placeholder={"Forti Token (Si requiere)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
                 </div>
                 <button className='btnLoginVpn' onClick={() => login(argumentos)} >Login</button>
-                <p className='pLoginVpn'>¿Olvidaste la contraseña?</p>
+                <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
             </div>
         </div>
     )

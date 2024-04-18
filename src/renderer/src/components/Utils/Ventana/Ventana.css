@@ -4,14 +4,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: shake 0.4s ease-in-out;
   }
   
   .modal {
-    background-color: rgb(216, 144, 35);
+    background-color: rgb(43, 161, 207);
     padding: 0px;
     padding-top: 20px;
     border-radius: 5px;
@@ -41,13 +41,14 @@
   {
     margin: 0;
     color: white;
-    background-color: rgb(216, 144, 35);
+    background-color: rgb(43, 161, 207);
     border: none;
     border-radius: 5px;
     width: 5rem;
   }
   .btnVentana:hover
   {
+    background-color: rgb(24, 107, 139);
     cursor: pointer;
   }
 
@@ -56,4 +57,12 @@
     height: 2.5rem;
     margin: 0;
     margin-right: 0.3rem;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
   }
