@@ -37,6 +37,20 @@ function createWindow() {
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
+
+  ///////////////////////////test forti
+/*
+  const checkProcess =()=> {
+    exec('pgrep openfortivpn', (error, stdout, stderr) => {
+      if (stdout) {
+      } else {
+        mainWindow.webContents.send('forti-off', 'El proceso openfortivpn no está en ejecución.');
+      }
+    });
+  }
+
+  setInterval(checkProcess, 20000);
+*/
 }
 
 // This method will be called when Electron has finished
@@ -61,6 +75,20 @@ app.whenReady().then(() => {
     console.log("Abriendo app..");
     // Ejecutar el comando
     exec(command, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error al intentar abrir Chrome: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`Error en la salida estándar: ${stderr}`);
+        return;
+      }
+      console.log(`Chrome abierto correctamente.`);
+    });
+  });
+  ipcMain.on('cerrar-forti', (event, command) => {
+    // Ejecutar el comando
+    exec("sudo pkill openfortivpn", (error, stdout, stderr) => {
       if (error) {
         console.error(`Error al intentar abrir Chrome: ${error.message}`);
         return;
@@ -105,7 +133,7 @@ app.whenReady().then(() => {
       return true;
     } catch (error) {
       console.error("Error en el proceso de login:", error);
-      return false;
+      return error;
     }
   });
 
@@ -114,7 +142,7 @@ app.whenReady().then(() => {
       exec(comando, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error al ejecutar el comando: ${error}`);
-          reject(error);
+          reject(error.message);
           return;
         }
         console.log(`Resultado del comando: ${stdout}`);
@@ -122,6 +150,7 @@ app.whenReady().then(() => {
       });
     });
   }
+
 
   /////////////////teset remoto
 
@@ -219,6 +248,10 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+//Chequear forti
+
+
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.

@@ -1,0 +1,139 @@
+.contenedorSubBarra {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Asegúrate de que el contenedor ocupe toda la pantalla horizontalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.version {
+    margin: 1rem;
+}
+
+.derechaBarra {
+    justify-content: right;
+    display: flex;
+}
+
+.imgSoporte {
+    height: 2rem;
+    margin: 0;
+}
+
+.imgWsp {
+    height: 5rem;
+    margin: 1rem;
+    margin-left: 0;
+}
+
+.imgWsp:hover {
+    height: 7rem;
+    cursor: pointer;
+    animation: logoTiembla 0.5s ease infinite;
+}
+
+.wspDiv {
+    display: flex;
+    align-items: center;
+}
+
+@keyframes logoTiembla {
+
+    0%,
+    100% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+body,
+html {
+    overflow: hidden;
+}
+
+.h1Wsp {
+    color: white;
+    margin: 1rem;
+}
+
+.divWspChat {
+    text-align: center;
+    background-color: rgb(68, 194, 68);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.divChat {
+    width: 18rem;
+    background-color: rgb(238, 238, 238);
+    height: 25rem;
+    padding: 1rem;
+    padding-top: 0.1rem;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+}
+
+.pChat {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.chat {
+    background-color: white;
+    height: 77%;
+    margin-top: 0;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+    overflow: auto;
+    /* Habilita el desplazamiento cuando el contenido excede la altura máxima */
+    max-height: 100%;
+}
+
+.escribirMsj {
+    background-color: white;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+}
+
+.btnWsp {
+    border: none;
+    color: white;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    height: 1.4rem;
+    border-radius: 5px;
+    background-color: rgb(20, 172, 20);
+}
+
+.btnWsp:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+.inptWsp {
+    margin: 0;
+    border: 1px solid black;
+}
+
+.Chatwsp {
+    position: fixed;
+    bottom: 0;
+    margin: 3rem;
+    margin-bottom: 8rem;
+    right: 0;
+    width: 20rem;
+    /* Ancho del div */
+    height: 40remx;
+    /* Altura del div */
+    overflow: auto;
+    /* Agregar desplazamiento si el contenido es más grande que el tamaño del div */
+}

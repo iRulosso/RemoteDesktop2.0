@@ -7,6 +7,11 @@
     align-items: center;
     animation: divMenu 1s ease-in-out;
 }
+.pCamposError
+{
+    margin: 0;
+    color: red;
+}
 .imgTitulo
 {
     width: 10rem;
@@ -41,6 +46,21 @@
     border-radius: 0 5px 5px 0;
     border: none;
 }
+.inputLoginRemotoError {
+    width: 15rem;
+    height: 2rem;
+    font-size: 16PX;
+    border: 2px solid red;
+    border-radius: 0 5px 5px 0;
+    animation: inptError 0.4s ease-in-out;
+}
+@keyframes inptError {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
 .pLoginRemoto
 {
     color: rgb(255, 255, 255);

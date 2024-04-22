@@ -13,9 +13,11 @@ import Loading from '../Loading/Loading';
 
 const LoginRemoto = ({ data }) => {
 
-    const [user, setUser] = useState("user");
-    const [pass, setPass] = useState("pass");
-    const [equipo, setEquipo] = useState("equipo");
+    const [user, setUser] = useState("");
+    const [pass, setPass] = useState("");
+    const [equipo, setEquipo] = useState("");
+
+    const [camposVacios, setCamposVacios] = useState(false);
 
     const [carga, setCarga] = useState(false);
 
@@ -26,9 +28,9 @@ const LoginRemoto = ({ data }) => {
     const [errorMsj, setErrorMsj] = useState("Error al iniciar el escritorio remoto.");
     const [errorTipo, setErrorTipo] = useState(true); //0 = OK, 1 == error
 
-    const handleUser = (e) => setUser(e.target.value);
-    const handlePass = (e) => setPass(e.target.value);
-    const handleEquipo = (e) => setEquipo(e.target.value);
+    const handleUser = (e) => {setUser(e.target.value);setCamposVacios(false);}
+    const handlePass = (e) => {setPass(e.target.value);setCamposVacios(false);}
+    const handleEquipo = (e) => {setEquipo(e.target.value);setCamposVacios(false);}
 
     const handleError = () => setError(!error);
     const handleCarga = () => setCarga(false);
@@ -48,14 +50,41 @@ const LoginRemoto = ({ data }) => {
     }
 
     const HandleLogin = async () => {
+
+        setCamposVacios(false);
+
+        if (user === "" || pass === "" || equipo === "") {
+            setCamposVacios(true);
+            return
+        }
+
         try {
             //setCarga(true);
             setLoading(true);
             const result = await window.electron.ipcRenderer.invoke('login-remoto', userObj);
             //setCarga(false);
-            setLoading(false);
-            setError(true);
-            console.log(result)
+            setErrorMsj("Ha ocurrido un error inesperado.");
+            try {
+                if (result.includes("DNS_NAME_NOT_FOUND") || result.includes("ERRCONNECT_CONNECT_TRANSPORT_FAILED")) {
+                    if (equipo.includes("."))
+                        setErrorMsj("No se encontro el equipo, esta mal escrito o se encuentra apagado.");
+                    else
+                        setErrorMsj("No se encontro el equipo, esta mal escrito o se encuentra apagado. Pruebe con IP");
+
+                } else if (result.includes("ERRCONNECT_LOGON_FAILURE")) {
+                    setErrorMsj("No se pudo iniciar sesion en el remoto, compruebe usuario y/o contraseña.");
+                } else if (result.includes("ERRINFO_LOGOFF_BY_USER") || result.includes("ERRINFO_RPC_INITIATED_DISCONNECT_BY_USER")) {
+                    setLoading(false);
+                    data.volver();
+                }
+
+                setLoading(false);
+                setError(true);
+            } catch (error) {
+                setLoading(false);
+                data.volver();
+            }
+            console.log(result);
         } catch (error) {
             console.error("Error al enviar el mensaje:", error);
         }
@@ -72,17 +101,18 @@ const LoginRemoto = ({ data }) => {
             <div className='formLoginRemoto'>
                 <div className='divCampoLoginRemoto'>
                     <img src={equipoIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handleEquipo} placeholder={"EQUIPO"} className='inputLoginRemoto' type="text" />
+                    <input onChange={handleEquipo} placeholder={"EQUIPO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
                     <img src={userIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handleUser} placeholder={"USUARIO"} className='inputLoginRemoto' type="text" />
+                    <input onChange={handleUser} placeholder={"USUARIO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
                     <img src={passIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handlePass} placeholder={"CONTRASEÑA"} className='inputLoginRemoto' type="password" />
+                    <input onChange={handlePass} placeholder={"CONTRASEÑA"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="password" />
                 </div>
             </div>
+            {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
             <button className={'btnLoginRemoto' + data.empresa} onClick={HandleLogin}>Login</button>
             <button className={'btnLoginRemoto' + data.empresa} onClick={data.volver}>Volver</button>
             <p className='pLoginRemoto'>¿Olvidaste la contraseña?</p>

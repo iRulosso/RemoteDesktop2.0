@@ -7,6 +7,11 @@ import alfyIcon from '../../assets/ALFY.png'
 
 const Menu = ({data}) => {
 
+  const handleOpenApp = () => {
+    window.electron.ipcRenderer.send("cerrar-forti");
+    data.cerrar();
+  }
+
   return (
     <div className='divMenu'>
       <h1 className='h1Menu'>Seleccione Empresa</h1>
@@ -16,6 +21,7 @@ const Menu = ({data}) => {
         <img className='imgLogo' onClick={()=>data.elegir("arpy")} src={arpyIcon} alt="" />
         <img className='imgLogo' onClick={()=>data.elegir("alfy")} src={alfyIcon} alt="" />
       </div>
+      <button className='desconectarVpn' onClick={handleOpenApp}>Desconectar VPN</button>
     </div>
   )
 }

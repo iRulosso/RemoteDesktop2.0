@@ -5,13 +5,16 @@ import userIcon from '../../assets/user.png';
 import passIcon from '../../assets/pass.png';
 import tokenIcon from '../../assets/token.png';
 import vpnIcon from '../../assets/vpn.png';
+import Ventana from '../Utils/Ventana/Ventana';
 
-const Login = ({ login }) => {
+const Login = ({setLogged}) => {
 
-    const [user, setUser] = useState("null");
-    const [pass, setPass] = useState("null");
+    const [user, setUser] = useState("");
+    const [pass, setPass] = useState("");
     const [otp, setOtp] = useState("0");
     const [vpn, setVpn] = useState('359');
+
+    const [camposVacios, setCamposVacios] = useState(false);
 
     const argumentos =
     {
@@ -20,19 +23,49 @@ const Login = ({ login }) => {
         otp,
         vpn
     }
+
     const handleVpn = (event) => setVpn(event.target.value);
     const handleUser = (e) => setUser(e.target.value);
     const handlePass = (e) => setPass(e.target.value);
     const handleOtp = (e) => setOtp(e.target.value);
+    const [error, setError] = useState(false);
+    const [errorMsj, setErrorMsj] = useState("error");
+    const [errorTipo, setErrorTipo] = useState(false); //0 = OK, 1 == error
 
-    const handleOlvidePass = () =>
+    const handleError = () => setError(false);
+    let objError =
     {
+        tipo: errorTipo,
+        texto: errorMsj,
+        cerrar: handleError
+    }
+
+    const HandleLogin = (argumentos) => {
+
+        setCamposVacios(false);
+
+        if (user === "" || pass === "") {
+            setCamposVacios(true);
+            return
+        }
+
+        const respuesta = window.electron.ipcRenderer.sendSync("forti-login", argumentos)
+        console.log(respuesta);
+        if (respuesta === true) setLogged(true);
+        else {
+            setError(true);
+            setErrorTipo(true);
+            setErrorMsj("Error al conectar la VPN.");
+        }
+    }
+
+    const handleOlvidePass = () => {
         window.electron.ipcRenderer.send("abrir-app", "google-chrome unlock.allaria.com.ar");
     }
 
     return (
         <div className='divLoginVpn'>
-            <h1 className='h1LoginVpn'>VPN Login</h1>
+            <h1 className='h1LoginVpn'>Forti VPN</h1>
             <div className='formLoginVpn'>
                 <div className='divCampoLoginVpn'>
                     <img src={vpnIcon} className='imgSelectVpn' />
@@ -44,19 +77,21 @@ const Login = ({ login }) => {
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={userIcon} className='imgLoginVpn' />
-                    <input placeholder={"Usuario"} onChange={handleUser} className='inputLoginVpn' type="text" />
+                    <input placeholder={"Usuario"} onChange={handleUser} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="text" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={passIcon} className='imgLoginVpn' />
-                    <input placeholder={"Contraseña"} onChange={handlePass} className='inputLoginVpn' type="password" />
+                    <input placeholder={"Contraseña"} onChange={handlePass} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="password" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={tokenIcon} className='imgLoginVpn' />
                     <input placeholder={"Forti Token (Si requiere)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
                 </div>
-                <button className='btnLoginVpn' onClick={() => login(argumentos)} >Login</button>
+                {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
+                <button className='btnLoginVpn' onClick={() => HandleLogin(argumentos)} >Login</button>
                 <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
             </div>
+            {error ? <Ventana data={objError} /> : null}
         </div>
     )
 }

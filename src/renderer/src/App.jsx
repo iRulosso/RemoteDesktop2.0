@@ -7,36 +7,20 @@ import LoginRemoto from "./components/LoginRemoto/LoginRemoto";
 import Barra from "./components/Barra/Barra";
 import Loading from "./components/Loading/Loading";
 import './App.css'
+import SubBarra from "./components/SubBarra/SubBarra";
 
 function App() {
 
   const [logged, setLogged] = useState(false);
   const [formRemoto, setFormRemoto] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMsj, setErrorMsj] = useState("error");
-  const [errorTipo, setErrorTipo] = useState(false); //0 = OK, 1 == error
   const [empresa, setEmpresa] = useState('allaria');
 
-  const handleError = () => setError(false);
   const handleDev = () => setLogged(!logged);
+  const handleSalirForti = () => setLogged(false);
 
-  let objError =
-  {
-    tipo: errorTipo,
-    texto: errorMsj,
-    cerrar: handleError
-  }
-
-  const HandleLogin = (argumentos) => {
-    const respuesta = window.electron.ipcRenderer.sendSync("forti-login", argumentos)
-    console.log(respuesta);
-    if (respuesta === true) setLogged(true);
-    else {
-      setError(true);
-      setErrorTipo(true);
-      setErrorMsj("Error al conectar la VPN.");
-    }
-  }
+  window.electron.ipcRenderer.on('forti-off', (event, message) => {
+    setLogged(false);
+});
 
   const handleFormRemoto = (e) => {
     setEmpresa(e)
@@ -49,11 +33,11 @@ function App() {
         <Barra />
         <div className="contenidoDiv">
           {logged ? (
-            formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa}} /> : <Menu data={{ elegir: handleFormRemoto }} />)
-            : <Login login={HandleLogin} />}
-          {error ? <Ventana data={objError} /> : null}
+            formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa}} /> : <Menu data={{ elegir: handleFormRemoto, cerrar:  handleSalirForti}} />)
+            : <Login setLogged={setLogged} />}
           <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
         </div>
+        <SubBarra/>
       </div>
     </div>
   )

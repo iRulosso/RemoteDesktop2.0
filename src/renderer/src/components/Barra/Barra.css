@@ -13,9 +13,19 @@
     margin: 0rem;
     transform: rotate(45deg);
 }
-
+.panelDerechoBarra
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
 .divBarraIconos
 {
     display: flex;
     flex-direction: row;
+}
+.barra
+{
+    justify-content: space-between;
+    display: flex;
 }
