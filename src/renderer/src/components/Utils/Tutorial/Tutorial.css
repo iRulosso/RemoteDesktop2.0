@@ -1,0 +1,61 @@
+.modal-overlayTuto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: shake 0.4s ease-in-out;
+  }
+  .pTutorial
+  {
+    text-align: left;
+    margin: 1rem;
+    margin-top: 0;
+    align-items: center;
+  }
+  .cerrarBtnTuto
+  {
+    background-color: rgb(43, 161, 207);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 15rem;
+    height: 2rem;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+  }
+  .cerrarBtnTuto:hover
+  {
+    cursor: pointer;
+    background-color: rgb(17, 82, 107);
+  }
+  .tituloTutorial
+  {
+    margin:0;
+  }
+  .modal-contentTuto
+  {
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    align-items: center;
+    border-radius: 0px 0px 5px 5px;
+  }
+  .modalTuto  {
+    background-color: rgb(43, 161, 207);
+    padding: 0px;
+    padding-top: 20px;
+    border-radius: 5px;
+  }
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }

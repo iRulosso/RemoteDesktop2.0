@@ -10,7 +10,9 @@
 }
 
 .version {
-    margin: 1rem;
+    margin: 0.2rem;
+    margin-left: 0.5rem;
+    font-size: 12px;
 }
 
 .derechaBarra {

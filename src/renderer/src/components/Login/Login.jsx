@@ -6,6 +6,7 @@ import passIcon from '../../assets/pass.png';
 import tokenIcon from '../../assets/token.png';
 import vpnIcon from '../../assets/vpn.png';
 import Ventana from '../Utils/Ventana/Ventana';
+import Tutorial from '../Utils/Tutorial/Tutorial';
 
 const Login = ({setLogged}) => {
 
@@ -13,6 +14,9 @@ const Login = ({setLogged}) => {
     const [pass, setPass] = useState("");
     const [otp, setOtp] = useState("0");
     const [vpn, setVpn] = useState('359');
+
+    const [tutorial, setTutorial] = useState(false);
+    const handleTutorial = () => setTutorial(!tutorial);
 
     const [camposVacios, setCamposVacios] = useState(false);
 
@@ -25,9 +29,10 @@ const Login = ({setLogged}) => {
     }
 
     const handleVpn = (event) => setVpn(event.target.value);
-    const handleUser = (e) => setUser(e.target.value);
-    const handlePass = (e) => setPass(e.target.value);
+    const handleUser = (e) => {setUser(e.target.value);setCamposVacios(false);}
+    const handlePass = (e) => {setPass(e.target.value);setCamposVacios(false);}
     const handleOtp = (e) => setOtp(e.target.value);
+    
     const [error, setError] = useState(false);
     const [errorMsj, setErrorMsj] = useState("error");
     const [errorTipo, setErrorTipo] = useState(false); //0 = OK, 1 == error
@@ -89,9 +94,11 @@ const Login = ({setLogged}) => {
                 </div>
                 {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
                 <button className='btnLoginVpn' onClick={() => HandleLogin(argumentos)} >Login</button>
+                <p className='pLoginVpn' onClick={handleTutorial}>¿No sabes conectearte? Haz click aqui</p>
                 <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
             </div>
             {error ? <Ventana data={objError} /> : null}
+            {tutorial ? <Tutorial cerrar={handleTutorial}/>:null}
         </div>
     )
 }

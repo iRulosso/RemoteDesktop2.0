@@ -1,7 +1,7 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, autoUpdater } from 'electron'
 import { join } from 'path'
 import { exec } from 'child_process';
-import { ps } from 'ps-node';
+import { WebSocket } from 'ws';
 import { spawn } from 'child_process';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -23,6 +23,7 @@ function createWindow() {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    autoUpdater.checkForUpdates();
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -39,18 +40,18 @@ function createWindow() {
   }
 
   ///////////////////////////test forti
-/*
-  const checkProcess =()=> {
-    exec('pgrep openfortivpn', (error, stdout, stderr) => {
-      if (stdout) {
-      } else {
-        mainWindow.webContents.send('forti-off', 'El proceso openfortivpn no está en ejecución.');
-      }
-    });
-  }
-
-  setInterval(checkProcess, 20000);
-*/
+  /*
+    const checkProcess =()=> {
+      exec('pgrep openfortivpn', (error, stdout, stderr) => {
+        if (stdout) {
+        } else {
+          mainWindow.webContents.send('forti-off', 'El proceso openfortivpn no está en ejecución.');
+        }
+      });
+    }
+  
+    setInterval(checkProcess, 20000);
+  */
 }
 
 // This method will be called when Electron has finished
@@ -249,7 +250,7 @@ app.on('window-all-closed', () => {
   }
 })
 
-//Chequear forti
+//ws
 
 
 
