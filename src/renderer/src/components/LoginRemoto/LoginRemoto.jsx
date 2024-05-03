@@ -10,6 +10,7 @@ import alfaIcon from '../../assets/alfaTitulo.png'
 import arpyIcon from '../../assets/arpyTitulo.png'
 import alfyIcon from '../../assets/alfyTitulo.png'
 import Loading from '../Loading/Loading';
+import Tutorial from '../Utils/Tutorial/Tutorial';
 
 const LoginRemoto = ({ data }) => {
 
@@ -34,6 +35,9 @@ const LoginRemoto = ({ data }) => {
 
     const handleError = () => setError(!error);
     const handleCarga = () => setCarga(false);
+
+    const [tutorial, setTutorial] = useState(false);
+    const handleTutorial = () => setTutorial(!tutorial);
 
     let userObj =
     {
@@ -115,11 +119,13 @@ const LoginRemoto = ({ data }) => {
             {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
             <button className={'btnLoginRemoto' + data.empresa} onClick={HandleLogin}>Login</button>
             <button className={'btnLoginRemoto' + data.empresa} onClick={data.volver}>Volver</button>
+            <p className='pLoginVpn' onClick={handleTutorial}>¿No sabes conectearte? Haz click aqui</p>
             <p className='pLoginRemoto'>¿Olvidaste la contraseña?</p>
 
             {carga ? <VetanaCargando data={{ cerrar: handleCarga }} /> : null}
             {error ? <Ventana data={objError} /> : null}
             {loading ? <Loading data={{ cerrar: handleLoading }} /> : null}
+            {tutorial ? <Tutorial tutorial={2} cerrar={handleTutorial}/>:null}
         </div>
     )
 }

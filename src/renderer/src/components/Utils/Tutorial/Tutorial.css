@@ -9,6 +9,11 @@
     align-items: center;
     animation: shake 0.4s ease-in-out;
   }
+  .fotoTuto
+  {
+    height: 12rem;
+    border-radius: 5px;
+  }
   .pTutorial
   {
     text-align: left;

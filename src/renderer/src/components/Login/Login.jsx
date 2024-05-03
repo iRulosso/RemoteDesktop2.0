@@ -98,7 +98,7 @@ const Login = ({setLogged}) => {
                 <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
             </div>
             {error ? <Ventana data={objError} /> : null}
-            {tutorial ? <Tutorial cerrar={handleTutorial}/>:null}
+            {tutorial ? <Tutorial tutorial={1} cerrar={handleTutorial}/>:null}
         </div>
     )
 }
