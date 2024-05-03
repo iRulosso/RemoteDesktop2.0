@@ -39,7 +39,7 @@ const Tutorial = ({ tutorial, cerrar }) => {
                                     <b>1.</b> Primero debera colocar su nombre de remoto <br />por ejemplo "hw-sistemas-3" o IP "172.2x.x.x". <br />
                                     <img src={foto5} alt="" /><br />
                                     <b>2.</b>  Debera utilizar usuario y contraseña de <br />remoto (misma que la del forti)<br />
-                                    <br />
+                                    <img src={foto2} alt="" /> <br />
                                     <b>3.</b>  Darle a "Login". Iniciara el intento de conexion
                                     <br /> al remoto, espere pacientemente, en caso de
                                     <br />   error lo vera detallado. <br />
