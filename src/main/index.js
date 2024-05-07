@@ -217,7 +217,7 @@ app.whenReady().then(() => {
     openfortivpnProcess.on('close', (code) => {
       // Analiza la salida capturada para buscar mensajes relevantes
       if (outputData.includes('ERROR:')) {
-        event.returnValue = false;
+        event.returnValue = outputData;
         console.error('Error al conddddectar:', outputData);
       } else {
         console.log('Conexión establecida correctamente.');
