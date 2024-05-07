@@ -1,6 +1,6 @@
 {
   "name": "remotedesktop2",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Version 2.0 de la aplicacion de escritorio remoto por Ramiro Ivan Schulmeister",
   "main": "./out/main/index.js",
   "author": "rschulmeister.com",

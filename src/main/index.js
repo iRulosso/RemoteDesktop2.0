@@ -6,6 +6,28 @@ import { spawn } from 'child_process';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+function initializeAutoUpdater() {
+  autoUpdater.setFeedURL({
+    provider: 'github',
+    owner: 'iRulosso',
+    repo: 'RemoteDesktop2.0',
+    releaseType: 'release'
+  });
+
+  autoUpdater.on('update-available', () => {
+    console.log("HAY ACTUALIZACION DISPONIBLE")
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    console.log("ACTUALIZACION DESCARGADA")
+    autoUpdater.quitAndInstall();
+  });
+
+  // Llamamos a la función checkForUpdates()
+  autoUpdater.checkForUpdates();
+}
+
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -22,8 +44,8 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-    autoUpdater.checkForUpdates();
+    mainWindow.show();
+    initializeAutoUpdater();
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
