@@ -8,6 +8,7 @@ import icon from '../../resources/icon.png?asset'
 // Just place this code at the entry point of your application:
 import updater from 'electron-simple-updater';
 updater.init('https://raw.githubusercontent.com/iRulosso/RemoteDesktop2.0/main/updates.json');
+updater.on('update-downloaded', () => updater.quitAndInstall());
 
 function createWindow() {
   // Create the browser window.
