@@ -24,7 +24,8 @@ function App() {
   });
 
   window.electron.ipcRenderer.on('update-downloading', (event, message) => {
-    setLogged(false);
+    console.log("ACTUALIZANDOOOO");
+    setUpdating(true);
   });
 
   const handleFormRemoto = (e) => {

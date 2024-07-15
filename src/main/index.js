@@ -23,14 +23,15 @@ function createWindow() {
     }
   })
 
-  updater.init('https://raw.githubusercontent.com/iRulosso/RemoteDesktop2.0/main/updates.json');
-  updater
-    .on('update-downloading', () => mainWindow.webContents.send('update-downloading'))
-    .on('update-downloaded', () => updater.quitAndInstall());
-
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
+    updater.init('https://raw.githubusercontent.com/iRulosso/RemoteDesktop2.0/main/updates.json');
+    updater
+      .on('update-downloading', () => mainWindow.webContents.send('update-downloading'))
+      .on('update-downloaded', () => updater.quitAndInstall());
   })
+
+
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)

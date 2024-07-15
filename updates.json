@@ -1,8 +1,8 @@
 {
   "linux-x64-prod": {
-    "update": "https://github.com/iRulosso/RemoteDesktop2.0/releases/download/0.3.1/remotedesktop2-0.3.1.AppImage",
-    "install": "https://github.com/iRulosso/RemoteDesktop2.0/releases/download/0.3.1/remotedesktop2-0.3.1.AppImage",
-    "version": "0.3.1",
-    "sha256": "f8164c39aba47702089a88ac18679cbea4e9ed8bbec88b3e02b5b6de0fecbdd3"
+    "update": "https://github.com/iRulosso/RemoteDesktop2.0/releases/download/0.4.0/remotedesktop2-0.4.0.AppImage",
+    "install": "https://github.com/iRulosso/RemoteDesktop2.0/releases/download/0.4.0/remotedesktop2-0.4.0.AppImage",
+    "version": "0.4.0",
+    "sha256": "3089df84ab875f0f2ebf9dcc3b1b0334a38a7381867c04d2991d8f09ae216a29"
   }
 }
