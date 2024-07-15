@@ -26,7 +26,7 @@ const SubBarra = () => {
         <div>
             <div className='contenedorSubBarra'>
                 <div>
-                    <p className='version'>RemoteDesktop2_alpha-0.0.6 ©ramiroschulmeister.com</p>
+                    <p className='version'>RemoteDesktop2_alpha-0.0.5 ©ramiroschulmeister.com</p>
                 </div>
                 <div className='derechaBarra'>
                     <div className='wspDiv'>
