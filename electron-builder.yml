@@ -30,8 +30,6 @@ dmg:
 linux:
   target:
     - AppImage
-    - snap
-    - deb
   maintainer: electronjs.org
   category: Utility
 appImage:
@@ -40,5 +38,5 @@ npmRebuild: false
 publish:
   provider: github
   owner: irulosso
-  repo: https://example.com/auto-updates
+  repo: https://github.com/iRulosso/RemoteDesktop2.0
   releaseType: release
