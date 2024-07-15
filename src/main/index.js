@@ -7,8 +7,6 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 // Just place this code at the entry point of your application:
 import updater from 'electron-simple-updater';
-updater.init('https://raw.githubusercontent.com/iRulosso/RemoteDesktop2.0/main/updates.json');
-updater.on('update-downloaded', () => updater.quitAndInstall());
 
 function createWindow() {
   // Create the browser window.
@@ -24,6 +22,11 @@ function createWindow() {
       sandbox: false
     }
   })
+
+  updater.init('https://raw.githubusercontent.com/iRulosso/RemoteDesktop2.0/main/updates.json');
+  updater
+    .on('update-downloading', () => mainWindow.webContents.send('update-downloading'))
+    .on('update-downloaded', () => updater.quitAndInstall());
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
