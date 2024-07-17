@@ -49,7 +49,7 @@ function createWindow() {
   }
 
   ///////////////////////////test forti
-
+  /*
   if (!checkForti) {
     const checkProcess = () => {
       exec('pgrep openfortivpn', (error, stdout, stderr) => {
@@ -61,7 +61,7 @@ function createWindow() {
     }
 
     setInterval(checkProcess, 20000);
-  }
+  }*/
 
 
   ////////////////COMPROBACION DE WIFI
