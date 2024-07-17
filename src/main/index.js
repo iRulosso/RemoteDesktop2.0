@@ -108,6 +108,7 @@ app.whenReady().then(() => {
         checkForti = true;
       }else{
         checkForti = false;
+        event.sender.send('forti-off', 'El proceso openfortivpn no está en ejecución.');
       }
     });
   })

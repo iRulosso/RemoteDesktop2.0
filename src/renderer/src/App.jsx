@@ -33,7 +33,7 @@ function App() {
     window.electron.ipcRenderer.send("check-lan", "checkeando lan");
     console.log("Checkeando lan");
   }
-  window.electron.ipcRenderer.removeAllListeners('update-downloading');
+  window.electron.ipcRenderer.removeAllListeners('check-lan-si');
   window.electron.ipcRenderer.on('check-lan-si', (event, message) => {
     setLogged(true);
   });
