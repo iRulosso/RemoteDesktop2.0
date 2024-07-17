@@ -68,6 +68,12 @@ const Login = ({setLogged}) => {
         window.electron.ipcRenderer.send("abrir-app", "google-chrome unlock.allaria.com.ar");
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          HandleLogin();
+        }
+      };
+
     return (
         <div className='divLoginVpn'>
             <h1 className='h1LoginVpn'>Forti VPN</h1>
@@ -82,15 +88,15 @@ const Login = ({setLogged}) => {
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={userIcon} className='imgLoginVpn' />
-                    <input placeholder={"Usuario"} onChange={handleUser} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="text" />
+                    <input onKeyDown={handleKeyPress} placeholder={"Usuario"} onChange={handleUser} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="text" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={passIcon} className='imgLoginVpn' />
-                    <input placeholder={"Contraseña"} onChange={handlePass} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="password" />
+                    <input onKeyDown={handleKeyPress} placeholder={"Contraseña"} onChange={handlePass} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="password" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={tokenIcon} className='imgLoginVpn' />
-                    <input placeholder={"Forti Token (Si requiere)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
+                    <input onKeyDown={handleKeyPress} placeholder={"Forti Token (Si requiere)"} onChange={handleOtp} className='inputLoginVpn' type="text" />
                 </div>
                 {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
                 <button className='btnLoginVpn' onClick={() => HandleLogin(argumentos)} >Login</button>

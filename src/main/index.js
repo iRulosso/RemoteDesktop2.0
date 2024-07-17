@@ -8,6 +8,8 @@ import icon from '../../resources/icon.png?asset'
 // Just place this code at the entry point of your application:
 import updater from 'electron-simple-updater';
 
+let checkForti = false;
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -47,8 +49,9 @@ function createWindow() {
   }
 
   ///////////////////////////test forti
-  /*
-    const checkProcess =()=> {
+
+  if (!checkForti) {
+    const checkProcess = () => {
       exec('pgrep openfortivpn', (error, stdout, stderr) => {
         if (stdout) {
         } else {
@@ -56,15 +59,37 @@ function createWindow() {
         }
       });
     }
-  
+
     setInterval(checkProcess, 20000);
-  */
+  }
+
+
+  ////////////////COMPROBACION DE WIFI
+
+  function realizarPing() {
+    exec('ping -c 1 -W 1 8.8.8.8', (error, stdout, stderr) => {
+      if (stdout.includes('1 received')) {
+        mainWindow.webContents.send('ping-si', 'Hay ping al 8.8.8.8');
+      } else {
+        mainWindow.webContents.send('ping-no', 'no hay ping al 8.8.8.8');
+      }
+      if (error !== null) {
+        console.error(`Error al intentar hacer ping: ${error}`);
+      }
+    });
+  }
+
+  // Llamar a la función inicialmente y luego cada 5 segundos
+  setInterval(realizarPing, 5000);
+
+  ////////////////////////////////////
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -75,8 +100,18 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', (event) => { console.log('pong'); event.reply('ping-r'); })
+  // check lan red
+  ipcMain.on('check-lan', (event) => {
+    exec('ping -c 1 -W 1 172.20.6.15', (error, stdout, stderr) => {
+      if (stdout.includes('1 received')) {
+        event.sender.send('check-lan-si', 'estamos en red');
+        checkForti = true;
+      }else{
+        checkForti = false;
+      }
+    });
+  })
+
 
   ///Abrir app
   ipcMain.on('abrir-app', (event, command) => {
@@ -136,7 +171,6 @@ app.whenReady().then(() => {
     console.log("Logueando....");
     try {
       const resultado = await ejecutarComandoAsync(comando);
-      // Aquí puedes continuar con el resultado obtenido
       console.log("Operación completada:", resultado);
       return true;
     } catch (error) {

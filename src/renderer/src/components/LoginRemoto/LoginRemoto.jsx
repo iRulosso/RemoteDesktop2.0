@@ -94,6 +94,11 @@ const LoginRemoto = ({ data }) => {
         }
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          HandleLogin();
+        }
+      };
 
     return (
         <div className='divLoginRemoto'>
@@ -105,15 +110,15 @@ const LoginRemoto = ({ data }) => {
             <div className='formLoginRemoto'>
                 <div className='divCampoLoginRemoto'>
                     <img src={equipoIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handleEquipo} placeholder={"EQUIPO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
+                    <input onKeyDown={handleKeyPress} onChange={handleEquipo} placeholder={"EQUIPO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
                     <img src={userIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handleUser} placeholder={"USUARIO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
+                    <input onKeyDown={handleKeyPress} onChange={handleUser} placeholder={"USUARIO"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="text" />
                 </div>
                 <div className='divCampoLoginRemoto'>
                     <img src={passIcon} className={'imgLoginRemoto' + data.empresa} />
-                    <input onChange={handlePass} placeholder={"CONTRASEÑA"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="password" />
+                    <input onKeyDown={handleKeyPress} onChange={handlePass} placeholder={"CONTRASEÑA"} className={camposVacios ? 'inputLoginRemotoError' : "inputLoginRemoto"} type="password" />
                 </div>
             </div>
             {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
