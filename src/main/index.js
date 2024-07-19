@@ -49,19 +49,17 @@ function createWindow() {
   }
 
   ///////////////////////////test forti
-  /*
-  if (!checkForti) {
-    const checkProcess = () => {
-      exec('pgrep openfortivpn', (error, stdout, stderr) => {
-        if (stdout) {
-        } else {
-          mainWindow.webContents.send('forti-off', 'El proceso openfortivpn no está en ejecución.');
-        }
-      });
-    }
+  const checkProcess = () => {
+    exec('pgrep openfortivpn', (error, stdout, stderr) => {
+      if (stdout) {
+        mainWindow.webContents.send('forti-si', 'El proceso openfortivpn está en ejecución.');
+      } else {
+        mainWindow.webContents.send('forti-no', 'El proceso openfortivpn no está en ejecución.');
+      }
+    });
+  }
 
-    setInterval(checkProcess, 20000);
-  }*/
+  setInterval(checkProcess, 2000);
 
 
   ////////////////COMPROBACION DE WIFI
@@ -151,7 +149,7 @@ app.whenReady().then(() => {
 
     let comando = '';
     if (argumentos.equipo.includes(".")) {
-      comando = `xfreerdp /multimon /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /cert-ignore`;
+      comando = `xfreerdp /multimon /v:${argumentos.equipo} /u:${argumentos.user} /p:${argumentos.pass} /sound /mic /floatbar /scale:100 +auto-reconnect /auto-reconnect-max-retries:5 /cert-ignore`;
     } else {
       switch (argumentos.empresa) {
         case "allaria":
@@ -195,10 +193,10 @@ app.whenReady().then(() => {
   }
 
 
-  /////////////////teset remoto
+  /////////////////Iniciar Forti
 
   ipcMain.on('remoto-login2', (event, argumentos) => {
-    const freerdp = spawn('sudo', ['openfortivpn', '359.allaria.online', `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
+    const freerdp = spawn('sudo', ['openfortivpn', `${argumentos.vpn}`, `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
       tdio: ['ignore', 'pipe', 'pipe'] // Redirige stdout y stderr para capturarlos
     });
     let outputData = ''; // Almacena la salida capturada

@@ -8,12 +8,12 @@ import vpnIcon from '../../assets/vpn.png';
 import Ventana from '../Utils/Ventana/Ventana';
 import Tutorial from '../Utils/Tutorial/Tutorial';
 
-const Login = ({setLogged}) => {
+const Login = ({ setLogged }) => {
 
     const [user, setUser] = useState("");
     const [pass, setPass] = useState("");
     const [otp, setOtp] = useState("0");
-    const [vpn, setVpn] = useState('359');
+    const [vpn, setVpn] = useState('359.allaria.online');
 
     const [tutorial, setTutorial] = useState(false);
     const handleTutorial = () => setTutorial(!tutorial);
@@ -29,10 +29,10 @@ const Login = ({setLogged}) => {
     }
 
     const handleVpn = (event) => setVpn(event.target.value);
-    const handleUser = (e) => {setUser(e.target.value);setCamposVacios(false);}
-    const handlePass = (e) => {setPass(e.target.value);setCamposVacios(false);}
+    const handleUser = (e) => { setUser(e.target.value); setCamposVacios(false); }
+    const handlePass = (e) => { setPass(e.target.value); setCamposVacios(false); }
     const handleOtp = (e) => setOtp(e.target.value);
-    
+
     const [error, setError] = useState(false);
     const [errorMsj, setErrorMsj] = useState("error");
     const [errorTipo, setErrorTipo] = useState(false); //0 = OK, 1 == error
@@ -70,9 +70,9 @@ const Login = ({setLogged}) => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-          HandleLogin(argumentos);
+            HandleLogin(argumentos);
         }
-      };
+    };
 
     return (
         <div className='divLoginVpn'>
@@ -103,7 +103,7 @@ const Login = ({setLogged}) => {
                 <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
             </div>
             {error ? <Ventana data={objError} /> : null}
-            {tutorial ? <Tutorial tutorial={1} cerrar={handleTutorial}/>:null}
+            {tutorial ? <Tutorial tutorial={1} cerrar={handleTutorial} /> : null}
         </div>
     )
 }
