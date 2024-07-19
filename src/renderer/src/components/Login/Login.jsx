@@ -70,7 +70,7 @@ const Login = ({setLogged}) => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-          HandleLogin();
+          HandleLogin(argumentos);
         }
       };
 
