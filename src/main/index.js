@@ -236,7 +236,7 @@ app.whenReady().then(() => {
 
   //Login forti//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ipcMain.on('forti-login', (event, argumentos) => {
-    const openfortivpnProcess = spawn('sudo', ['openfortivpn', '359.allaria.online', `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
+    const openfortivpnProcess = spawn('sudo', ['openfortivpn', `${argumentos.vpn}`, `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
       tdio: ['ignore', 'pipe', 'pipe'] // Redirige stdout y stderr para capturarlos
     });
     let outputData = ''; // Almacena la salida capturada

@@ -35,7 +35,7 @@ const Barra = () => {
         </div>
       </div>
       <div className='panelDerechoBarra'>
-        <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("gnome-control-center")} src={salirIcon} alt="" />
+        <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("shutdown -h 0")} src={salirIcon} alt="" />
       </div>
     </div>
   )

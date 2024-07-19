@@ -81,9 +81,8 @@ const Login = ({setLogged}) => {
                 <div className='divCampoLoginVpn'>
                     <img src={vpnIcon} className='imgSelectVpn' />
                     <select className='selectLogin' name="select" onChange={handleVpn}>
-                        <option value="359" selected>Allaria 359</option>
-                        <option value="277">Allaria 277</option>
-                        <option value="hc">Allaria HC</option>
+                        <option value="359.allaria.online" selected>Allaria 359</option>
+                        <option value="hc.allaria.com.ar">Allaria HC</option>
                     </select>
                 </div>
                 <div className='divCampoLoginVpn'>
