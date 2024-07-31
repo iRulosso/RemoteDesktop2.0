@@ -196,7 +196,7 @@ app.whenReady().then(() => {
   /////////////////Iniciar Forti
 
   ipcMain.on('remoto-login2', (event, argumentos) => {
-    const freerdp = spawn('sudo', ['openfortivpn', `${argumentos.vpn}`, `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`], {
+    const freerdp = spawn('sudo', ['openfortivpn', `${argumentos.vpn}`, `--username=${argumentos.user}`, `--password=${argumentos.pass}`, `--otp=${argumentos.otp}`, `--trusted-cert c41c6f92a13640c3c41fbfce177d65cf94df76991a13d04dcbebbb4a1d493cc0`], {
       tdio: ['ignore', 'pipe', 'pipe'] // Redirige stdout y stderr para capturarlos
     });
     let outputData = ''; // Almacena la salida capturada
