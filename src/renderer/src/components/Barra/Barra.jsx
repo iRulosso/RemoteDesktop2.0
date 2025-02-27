@@ -27,7 +27,7 @@ const Barra = () => {
     <div className='barra'>
       <div className='divBarraIconos'>
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("gnome-control-center")} src={settingIcon} alt="" />
-        <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("anydesk")} src={anyIcon} alt="" />
+        <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("teamviewer")} src={anyIcon} alt="" />
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("google-chrome")} src={googleIcon} alt="" />
         <div style={{display:"flex",alignItems:"center"}}>
           <img className="botonAccion" src={wifiIcon}/>

@@ -20,6 +20,9 @@ function App() {
   const handleSalirForti = () => setLogged(false);
 
   useEffect(() => {
+
+    handleCheckTeamViewer();
+
     // Llama a miFuncion cada segundo usando setInterval
     const intervalId = setInterval(handleCheckLan, 3000);
 
@@ -33,6 +36,12 @@ function App() {
     window.electron.ipcRenderer.send("check-lan", "checkeando lan");
     console.log("Checkeando lan");
   }
+
+  const handleCheckTeamViewer = () => {
+    window.electron.ipcRenderer.send("check-team", "checkeando que este instalado el teamviewer");
+    console.log("Checkeando team");
+  }
+
   window.electron.ipcRenderer.removeAllListeners('check-lan-si');
   window.electron.ipcRenderer.on('check-lan-si', (event, message) => {
     setLogged(true);
