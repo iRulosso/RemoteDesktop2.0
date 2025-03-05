@@ -1,6 +1,6 @@
 .app {
     overflow: hidden;
-    background-image: url('./assets/fondo2.jpg');
+    background-image: url('./assets/fondo3.jpg');
     background-size: cover;
     user-select: none;
     width: 100%;
@@ -17,4 +17,8 @@
 body
 {
     background-color: black;
+}
+
+.div-updates {
+    text-align: center;
 }
