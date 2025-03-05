@@ -15,6 +15,7 @@ function App() {
   const [formRemoto, setFormRemoto] = useState(false);
   const [empresa, setEmpresa] = useState('allaria');
   const [updating, setUpdating] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const handleDev = () => setLogged(!logged);
   const handleSalirForti = () => setLogged(false);
@@ -74,16 +75,25 @@ function App() {
               <p>Se reiniciara automaticamente al terminar. Tiempo estimado 20 segundos.</p>
             </div>
           ) : (
-            <div>
-              <Barra />
-              <div className="contenidoDiv">
-                {logged ? (
-                  formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa }} /> : <Menu data={{ elegir: handleFormRemoto, cerrar: handleSalirForti }} />)
-                  : <Login setLogged={setLogged} />}
-                <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
+            downloading ? (
+              <div>
+                <h1>Bajando TeamViewer</h1>
+                <p>Por favor aguarde que se descargue e instale TeamViewer.</p>
+                <p>Le pedira que ingrese una contraseña, por favor coloque la misma contraseña contraseña que uso al iniciar la PC/Notebook.</p>
+                <p>Continuara al menu cuando termine la instalacion. Tiempo estimado 1 minuto.</p>
               </div>
-              <SubBarra />
-            </div>
+            ) : (
+              <div>
+                <Barra />
+                <div className="contenidoDiv">
+                  {logged ? (
+                    formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa }} /> : <Menu data={{ elegir: handleFormRemoto, cerrar: handleSalirForti }} />)
+                    : <Login setLogged={setLogged} />}
+                  <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
+                </div>
+                <SubBarra />
+              </div>
+            )
           )
         }
       </div>
