@@ -69,27 +69,26 @@ function App() {
       <div className="app">
         {
           updating ? (
-            <div>
-              <h1>ACTUALIZANDO</h1>
-              <p>Actualizando aplicacion, aguarde unos segundos.</p>
+            <div className="div-updates">
+              <h1>ACTUALIZANDO...</h1>
+              <p>Actualizando aplicación, aguarde unos segundos.</p>
               <p>Se reiniciara automaticamente al terminar. Tiempo estimado 20 segundos.</p>
             </div>
           ) : (
             downloading ? (
               <div>
-                <h1>Bajando TeamViewer</h1>
+                <h1>Bajando TeamViewer...</h1>
                 <p>Por favor aguarde que se descargue e instale TeamViewer.</p>
-                <p>Le pedira que ingrese una contraseña, por favor coloque la misma contraseña contraseña que uso al iniciar la PC/Notebook.</p>
-                <p>Continuara al menu cuando termine la instalacion. Tiempo estimado 1 minuto.</p>
+                <p>Le pedira que ingrese una contraseña, por favor coloque la misma contraseña que usó al iniciar la PC/Notebook.</p>
+                <p>Continuará al menú cuando termine la instalación. Tiempo estimado 1 minuto.</p>
               </div>
             ) : (
-              <div>
+              <div style={{height:"100%"}}>
                 <Barra />
-                <div className="contenidoDiv">
+                <div className="divCentralContent">
                   {logged ? (
                     formRemoto ? <LoginRemoto data={{ volver: handleFormRemoto, empresa }} /> : <Menu data={{ elegir: handleFormRemoto, cerrar: handleSalirForti }} />)
                     : <Login setLogged={setLogged} />}
-                  <button style={{ width: 1, height: 1 }} onClick={handleDev}></button>
                 </div>
                 <SubBarra />
               </div>

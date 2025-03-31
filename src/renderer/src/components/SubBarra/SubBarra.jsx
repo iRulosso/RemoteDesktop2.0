@@ -23,41 +23,9 @@ const SubBarra = () => {
     }
 
     return (
-        <div>
-            <div className='contenedorSubBarra'>
-                <div>
-                    <p className='version'>RemoteDesktop2-1.2.0 ©ramiroschulmeister.com</p>
-                </div>
-                <div className='derechaBarra'>
-                    {/*<div className='wspDiv'>
-                        {//<img className="imgSoporte" src={soporteIcon} alt="" />
-                        }
-                        <img onClick={handleWsp} className='imgWsp' src={wspIcon} alt="" />
-                    </div>*/}
-                </div>
+        <div className='contenedorSubBarra'>
+                <p className='version'>RemoteDesktop2-1.2.0 ©ramiroschulmeister.com</p>
             </div>
-            {
-                wsp ?
-                    (
-                        <div className='Chatwsp'>
-                            <div className='divWspChat'>
-                                <h1 className='h1Wsp'>Soporte</h1>
-                                <div className='divChat'>
-                                    <div className='chat'>
-                                        {msj.map((text, index) => (
-                                            <p className='pChat' key={index}>{text}</p>
-                                        ))}
-                                    </div>
-                                    <div className='escribirMsj'>
-                                        <input onChange={handleNuevoMsj} className='inptWsp' type="text" />
-                                        <button onClick={handleMsj} className='btnWsp'>Enviar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ) : null
-            }
-        </div>
     )
 }
 

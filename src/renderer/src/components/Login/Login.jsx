@@ -76,10 +76,13 @@ const Login = ({ setLogged }) => {
 
     return (
         <div className='divLoginVpn'>
-            <h1 className='h1LoginVpn'>Forti VPN</h1>
+            <div className='lgn-div-titulos'>
+                <h1 className='h1LoginVpn'>Forti VPN</h1>
+                <h2 className='lgn-div-titulos-h2-allaria'>Allaria</h2>
+            </div>    
             <div className='formLoginVpn'>
                 <div className='divCampoLoginVpn'>
-                    <img src={vpnIcon} className='imgSelectVpn' />
+                    <img src={vpnIcon} className='imgLoginVpn' />
                     <select className='selectLogin' name="select" onChange={handleVpn}>
                         <option value="359.allaria.online" selected>Allaria 359</option>
                         <option value="hc.allaria.com.ar">Allaria HC</option>
@@ -88,11 +91,11 @@ const Login = ({ setLogged }) => {
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={userIcon} className='imgLoginVpn' />
-                    <input onKeyDown={handleKeyPress} placeholder={"Usuario"} onChange={handleUser} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="text" />
+                    <input onKeyDown={handleKeyPress} placeholder={"Usuario"} onChange={handleUser} className="inputLoginVpn" type="text" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={passIcon} className='imgLoginVpn' />
-                    <input onKeyDown={handleKeyPress} placeholder={"Contraseña"} onChange={handlePass} className={camposVacios ? 'inputLoginVpnError' : 'inputLoginVpn'} type="password" />
+                    <input onKeyDown={handleKeyPress} placeholder={"Contraseña"} onChange={handlePass} className="inputLoginVpn" type="password" />
                 </div>
                 <div className='divCampoLoginVpn'>
                     <img src={tokenIcon} className='imgLoginVpn' />
@@ -100,8 +103,8 @@ const Login = ({ setLogged }) => {
                 </div>
                 {camposVacios ? <p className='pCamposError'>¡Debe completar todos los campos!</p> : null}
                 <button className='btnLoginVpn' onClick={() => HandleLogin(argumentos)} >Login</button>
-                <p className='pLoginVpn' onClick={handleTutorial}>¿No sabes conectearte? Haz click aqui</p>
-                <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>
+                {/*<p className='pLoginVpn' onClick={handleTutorial}>¿No sabes conectearte? Haz click aqui</p>
+                <p className='pLoginVpn' onClick={handleOlvidePass}>¿Olvidaste la contraseña?</p>*/}
             </div>
             {error ? <Ventana data={objError} /> : null}
             {tutorial ? <Tutorial tutorial={1} cerrar={handleTutorial} /> : null}
