@@ -30,7 +30,7 @@ const Barra = () => {
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("teamviewer")} src={anyIcon} alt="" />
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("google-chrome")} src={googleIcon} alt="" />
         <img className="botonAccion" src={wifiIcon} />
-        <p style={wifi ? { fontSize: 24, fontWeight: "bold", color: "green" } : { fontSize: 24, fontWeight: "bold", color: "red" }}>{wifi ? "CONECTADO" : "SIN INTERNET"}</p>
+        <p style={wifi ? { fontSize: 18, color: "green" } : { fontSize: 20, color: "red" }}>{wifi ? "CONECTADO" : "SIN INTERNET"}</p>
       </div>
       <div className='divBarraIconos'>
         <img className="botonApagado" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("shutdown -h 0")} src={salirIcon} alt="" />

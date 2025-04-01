@@ -11,10 +11,10 @@
   }
   
   .modal {
-    background-color: rgb(43, 161, 207);
+    background-color: rgb(63, 152, 255);
     padding: 0px;
     padding-top: 20px;
-    border-radius: 5px;
+    box-shadow: 0px 1px 2px 2px rgba(37, 37, 37, 0.281);
   }
 
   .h1Ventana
@@ -32,23 +32,23 @@
   .modal-content
   {
     text-align: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     padding: 10px;
-    border-radius: 0px 0px 5px 5px;
+  
   }
 
   .btnVentana
   {
     margin: 0;
     color: white;
-    background-color: rgb(43, 161, 207);
+    background-color: rgb(63, 152, 255);
     border: none;
     border-radius: 5px;
     width: 5rem;
   }
   .btnVentana:hover
   {
-    background-color: rgb(24, 107, 139);
+    background-color: rgb(53, 131, 219);
     cursor: pointer;
   }
 

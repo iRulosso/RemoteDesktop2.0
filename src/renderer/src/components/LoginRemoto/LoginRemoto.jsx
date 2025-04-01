@@ -5,8 +5,8 @@ import passIcon from '../../assets/pass.png';
 import equipoIcon from '../../assets/equipo.png';
 import VetanaCargando from '../Utils/VentanaCargando/VetanaCargando';
 import Ventana from '../Utils/Ventana/Ventana';
-import allariaicon from '../../assets/allariaTitulo.png'
-import alfaIcon from '../../assets/alfaTitulo.png'
+import allariaicon from '../../assets/allaria-logo-black.png'
+import alfaIcon from '../../assets/Logo-alfa-negro.png'
 import arpyIcon from '../../assets/arpyTitulo.png'
 import alfyIcon from '../../assets/alfyTitulo.png'
 import Loading from '../Loading/Loading';

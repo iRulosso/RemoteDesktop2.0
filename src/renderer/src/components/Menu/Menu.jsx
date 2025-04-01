@@ -24,7 +24,7 @@ const Menu = ({data}) => {
 
   return (
     <div className='divMenu'>
-      <h1 className='h1Menu'>Seleccione Empresa</h1>
+      <h1 className='h1Menu'>Seleccione su equipo</h1>
       <div className='divLogos'>
         <img className='imgLogo' onClick={()=>data.elegir("allaria")} src={allariaicon} alt="" />
         <img className='imgLogo' onClick={()=>data.elegir("alfa")} src={alfaIcon} alt="" />

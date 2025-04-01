@@ -1,48 +1,56 @@
 .imgLogo {
-  width: 15rem;
-  height: 15rem;
-  margin: 1rem;
-  background-color: rgba(255, 255, 255, 0.829);
+  width: 20%;
+  margin: 2%;
+  background-color: rgba(172, 172, 172, 0.671);
+  box-shadow: 0 0px 0px 2px rgb(10, 58, 104);
   border-radius: 50%;
   transition: transform 0.3s ease;
-  border: 1px solid black;
+  align-items: center;
+  object-fit: contain;
+  object-position: center;
 }
 .desconectarVpn
 {
-  background-color: white;
+  position: absolute;
+  background-color: rgb(15, 80, 141);
   border: none;
-  width: 20rem;
-  border-radius: 100px;
-  padding: 0.3rem;
-  margin-top: 0.5rem;
+  width: 20%;
+  padding: 1.7%;
+  margin-top: 0%;
+  box-shadow: 0 0 4px 1px rgb(104, 104, 104);
+  color: white;
+  font-weight: bold;
+  font-size: 130%;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .desconectarVpn:hover
 {
   cursor: pointer;
-  background-color: rgb(139, 139, 139);
+  background-color: rgb(10, 58, 104);
 }
 .imgLogo:hover {
   transform: rotate(30deg);
-  width: 17rem;
-  height: 17rem;
-  margin: 0rem;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0px 25px rgb(0, 0, 0);
+  width: 20%;
+  margin: 2%;
+  background-color: rgba(199, 199, 199, 0.651);
+  box-shadow: 0 0px 25px rgb(133, 133, 133);
   animation: logoTiembla 0.5s ease infinite;
-
   cursor: pointer;
 }
 
 .divLogos {
-  background-color: white;
-  display: flex;
-  padding: 1rem;
-  border-radius: 150px;
+  position: relative;
+  width: 100%;
+  height: 65%;
+  padding-top: 3%;
 }
 
 .h1Menu {
-  font-size: 50px;
-  color: white;
+  font-size: 300%;
+  color: rgb(15, 80, 141);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.432);
 }
 
 @keyframes divMenu {
