@@ -20,7 +20,7 @@ const Barra = () => {
     console.log("hay ping");
   });
   window.electron.ipcRenderer.on('ping-no', (event, message) => {
-    setWifi(false);console.log("no hay ping");
+    setWifi(false); console.log("no hay ping");
   });
 
   return (
@@ -29,11 +29,11 @@ const Barra = () => {
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("gnome-control-center")} src={settingIcon} alt="" />
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("teamviewer")} src={anyIcon} alt="" />
         <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("google-chrome")} src={googleIcon} alt="" />
-          <img className="botonAccion" src={wifiIcon}/>
-          <p style={wifi?{fontSize:24,fontWeight:"bold",color:"green"}:{fontSize:24,fontWeight:"bold",color:"red"}}>{wifi?"CONECTADO":"SIN INTERNET"}</p>
+        <img className="botonAccion" src={wifiIcon} />
+        <p style={wifi ? { fontSize: 24, fontWeight: "bold", color: "green" } : { fontSize: 24, fontWeight: "bold", color: "red" }}>{wifi ? "CONECTADO" : "SIN INTERNET"}</p>
       </div>
       <div className='divBarraIconos'>
-        <img className="botonAccion" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("shutdown -h 0")} src={salirIcon} alt="" />
+        <img className="botonApagado" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => handleOpenApp("shutdown -h 0")} src={salirIcon} alt="" />
       </div>
     </div>
   )
